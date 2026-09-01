@@ -1,7 +1,3 @@
-# Automation
-
-Python + uv + Playwright course repo.
-
 ```bash
 git clone https://github.com/pp-automation-class/automation.git
 cd automation

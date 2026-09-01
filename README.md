@@ -1,6 +1,7 @@
 # Automation
 
-Course repo for the automation class (`pp-automation-class`).
+Course repo for the automation class (`pp-automation-class`).  
+Stack: **Python**, **uv**, **Playwright**.
 
 ## Setup
 
@@ -9,17 +10,59 @@ git clone https://github.com/pp-automation-class/automation.git
 cd automation
 ```
 
+### Install uv (macOS)
+
+```bash
+# Homebrew
+brew install uv
+
+# or curl
+curl -LsSf https://astral.sh/uv/install.sh | sh
+```
+
+### Install Python (via uv)
+
+```bash
+uv python install 3.12
+uv python pin 3.12
+```
+
+### Project env + Playwright
+
+```bash
+uv init --name automation   # skip if pyproject.toml already exists
+uv add playwright pytest pytest-playwright
+uv run playwright install
+# browsers + OS deps (macOS usually just needs the browsers line above)
+uv run playwright install-deps   # Linux CI; optional on macOS
+```
+
+Verify:
+
+```bash
+uv run python -c "import playwright; print(playwright.__version__)"
+uv run playwright --version
+```
+
 ## Structure
 
 ```
 automation/
 ├── README.md
-└── …   # labs / scripts land here
+├── .gitignore
+├── pyproject.toml      # after uv init / uv add
+└── …                   # labs / scripts
 ```
 
 ## Usage
 
-Add tools, scripts, and lab work as the course progresses. Document each exercise in its own folder with a short note on how to run it.
+```bash
+uv run pytest
+# or a single script
+uv run python path/to/script.py
+```
+
+Document each exercise in its own folder with a short note on how to run it.
 
 ## Contributing
 

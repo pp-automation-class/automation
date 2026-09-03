@@ -13,6 +13,35 @@ Open `index.html` in a browser (or serve it locally). Valid credentials:
 
 Successful login shows **Login successful.** Invalid credentials show **Invalid email or password.**
 
+## Install C++
+
+Playwright’s Python packages (notably `greenlet`) need a C++ compiler on some platforms. Install one before `uv add playwright`.
+
+### Windows
+
+Install [Microsoft C++ Build Tools](https://visualstudio.microsoft.com/visual-cpp-build-tools/) and select the **Desktop development with C++** workload.
+
+Or from PowerShell with winget:
+
+```powershell
+winget install Microsoft.VisualStudio.2022.BuildTools --force --override "--wait --passive --add Microsoft.VisualStudio.Workload.VCTools --includeRecommended"
+```
+
+Restart the terminal after install.
+
+### macOS
+
+```bash
+xcode-select --install
+```
+
+### Linux (Debian/Ubuntu)
+
+```bash
+sudo apt update
+sudo apt install build-essential
+```
+
 ## Setup
 
 ```bash

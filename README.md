@@ -49,24 +49,14 @@ git clone https://github.com/pp-automation-class/automation.git
 cd automation
 
 brew install uv   # or: curl -LsSf https://astral.sh/uv/install.sh | sh
+# Windows: irm https://astral.sh/uv/install.ps1 | iex
 
-uv python install 3.12
-uv python pin 3.12
-
-uv init --name automation   # skip if pyproject.toml exists
-uv add playwright pytest pytest-playwright
+uv sync
 uv run playwright install
-```
-
-On Windows (PowerShell), install uv with:
-
-```powershell
-powershell -ExecutionPolicy ByPass -c "irm https://astral.sh/uv/install.ps1 | iex"
 ```
 
 ## Run
 
 ```bash
 uv run pytest
-uv run python path/to/script.py
 ```

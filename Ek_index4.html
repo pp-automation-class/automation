@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Sign up — Automation</title>
+  <title>Log in — Automation</title>
   <style>
     :root {
       --bg: #0f1419;
@@ -170,16 +170,16 @@
 <body>
   <main class="card">
     <div class="tabs" role="tablist" aria-label="Account forms">
-      <button id="tab-signin" class="tab" type="button" role="tab" aria-selected="false" aria-controls="signin-panel">
-        Sign in
+      <button id="tab-signin" class="tab" type="button" role="tab" aria-selected="true" aria-controls="signin-panel">
+        Log in
       </button>
-      <button id="tab-signup" class="tab" type="button" role="tab" aria-selected="true" aria-controls="signup-panel">
+      <button id="tab-signup" class="tab" type="button" role="tab" aria-selected="false" aria-controls="signup-panel">
         Sign up
       </button>
     </div>
 
-    <section id="signin-panel" class="panel" role="tabpanel" hidden>
-      <h1>Sign in</h1>
+    <section id="signin-panel" class="panel" role="tabpanel">
+      <h1>Log in</h1>
       <p class="subtitle">Automation practice login</p>
 
       <form id="login-form" action="#" method="post" novalidate>
@@ -216,13 +216,13 @@
           <a id="forgot-password" href="#forgot">Forgot password?</a>
         </div>
 
-        <button id="login-button" type="submit">Submit</button>
+        <button id="login-button" type="submit">Log in</button>
       </form>
 
       <p id="message" class="message" role="status" aria-live="polite"></p>
     </section>
 
-    <section id="signup-panel" class="panel" role="tabpanel">
+    <section id="signup-panel" class="panel" role="tabpanel" hidden>
       <h1>Sign up</h1>
       <p class="subtitle">Automation practice registration</p>
 
@@ -309,7 +309,7 @@
       signinPanel.hidden = signup;
       tabSignup.setAttribute("aria-selected", String(signup));
       tabSignin.setAttribute("aria-selected", String(!signup));
-      document.title = signup ? "Sign up — Automation" : "Login — Automation";
+      document.title = signup ? "Sign up — Automation" : "Log in — Automation";
     }
 
     function setMessage(el, type, text) {
@@ -387,7 +387,7 @@
       signupForm.dataset.registered = "true";
     });
 
-    showPanel("signup");
+    showPanel("signin");
   </script>
 </body>
 </html>

@@ -18,7 +18,7 @@ is_logged_in = False
 debug = True
 
 a = int("10")
-b = 2
+b = 5
 print(type(a))
 print(type(b))
 

@@ -6,11 +6,11 @@ b = float(input("Enter second number: "))
 
 if op == "+":
     result = (a + b)
-elif op == "-":
+if op == "-":
     result = (a - b)
-elif op == "*":
+if op == "*":
     result = (a * b)
-elif op == "/":
+if op == "/":
     result = (a / b)
 else:
     print("Unknown operator")

@@ -1,8 +1,16 @@
 my_name = input("Enter your name: ")
 my_age = input("Enter your age: ")
+my_city = input("Enter your city: ")
+my_country = input("Enter your country: ")
+my_email = input("Enter your email: ")
+my_zip = input("Enter your zip: ")
+
 print(my_name)
 print(my_age)
-
+print(my_city)
+print(my_country)
+print(my_email)
+print(my_zip)
 print(int(my_age)+ 15)
 
 

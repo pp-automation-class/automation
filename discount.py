@@ -5,7 +5,7 @@ age = int(input("Enter your age: "))
 
 if age <= 18:
     print(10)
-elif age > 18 and age > 65:
+if age > 18 and age > 65:
     print(5)
 else:
     print(15)

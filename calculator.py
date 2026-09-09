@@ -1,17 +1,17 @@
-print("Simple calculator (+  -  *  /)")
+print("Simple Calculator (+ - * ?)")
 
-a = float(input("First number: "))
-op = input("Operator (+ - * /): ").strip()
-b = float(input("Second number: "))
+a = float(input("Enter first number: "))
+op = input("Enter + or - or * or /: ")
+b = float(input("Enter second number: "))
 
 if op == "+":
-    result = a + b
-elif op == "-":
-    result = a - b
-elif op == "*":
-    result = a * b
-elif op == "/":
-    result = a / b
+    result = (a + b)
+if op == "-":
+    result = (a - b)
+if op == "*":
+    result = (a * b)
+if op == "/":
+    result = (a / b)
 else:
     print("Unknown operator")
     exit()

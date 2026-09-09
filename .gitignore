@@ -4,27 +4,34 @@ __pycache__/
 *$py.class
 *.so
 .Python
-*.egg
-*.egg-info/
-.eggs/
-dist/
-build/
-pip-wheel-metadata/
-*.manifest
-*.spec
 
 # Virtual environments
 .venv/
 venv/
 ENV/
 env/
-.env/
-.python-version
 
-# Packaging / installers
+# Packaging
+build/
+dist/
+sdist/
+wheels/
+share/python-wheels/
+*.egg
+*.egg-info/
+.eggs/
 *.whl
+*.manifest
+*.spec
+pip-wheel-metadata/
+pip-log.txt
+pip-delete-this-directory.txt
 .installed.cfg
 MANIFEST
+
+# uv
+.uv/
+uv-cache/
 
 # Test / coverage
 .pytest_cache/
@@ -39,19 +46,20 @@ coverage.xml
 *.cover
 *.py,cover
 .hypothesis/
+
+# Type checkers / linters
 .mypy_cache/
 .ruff_cache/
 .pytype/
 .pyre/
-
-# Type checkers / linters
 .dmypy.json
 dmypy.json
+.pyright/
 
 # Jupyter
 .ipynb_checkpoints/
 
-# Environments / secrets
+# Secrets
 .env
 .env.*
 !.env.example
@@ -59,7 +67,7 @@ dmypy.json
 secrets.env
 credentials.json
 
-# IDE / editors
+# IDE / OS
 .idea/
 .vscode/
 *.swp
@@ -67,32 +75,28 @@ credentials.json
 *~
 .DS_Store
 Thumbs.db
+*.log
+*.tmp
+*.temp
+.direnv/
 
 # Playwright
-/test-results/
-/playwright-report/
-/blob-report/
-/playwright/.cache/
-/trace.zip
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache/
+playwright/.local-browsers/
+.playwright/
+trace.zip
 **/traces/
 **/*.webm
 **/videos/
 **/screenshots/
 .auth/
 
-# Playwright Python (pytest-playwright)
-.playwright/
-playwright/.local-browsers/
-
-# Node (if Playwright JS/TS or codegen tooling is used)
+# Node (Playwright codegen / JS tooling)
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-
-# OS / misc
-*.log
-*.tmp
-*.temp
-.direnv/

@@ -12,5 +12,3 @@ print(my_country)
 print(my_email)
 print(my_zip)
 print(int(my_age)+ 15)
-
-

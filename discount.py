@@ -25,3 +25,4 @@ False or True = True
 False or False = False
 
 #Not
+True = False

@@ -1,19 +1,23 @@
 print("Simple Calculator (+ - * ?)")
+while True:
+    a = input("Enter first number or q to quit: ")
+    if a == "q":
+        break
+    op = input("Enter + or - or * or /: ")
+    b = float(input("Enter second number: "))
+    a = float(a) 
 
-a = float(input("Enter first number: "))
-op = input("Enter + or - or * or /: ")
-b = float(input("Enter second number: "))
+    values = [a, op, b]
 
-if op == "+":
-    result = (a + b)
-if op == "-":
-    result = (a - b)
-if op == "*":
-    result = (a * b)
-if op == "/":
-    result = (a / b)
-else:
-    print("Unknown operator")
-    exit()
+    if values[1] == "+":
+        result = (values[0] + values[2])
+    elif values[1] == "-":
+        result = (values[0] - values[2])
+    elif values[1] == "*":
+        result = (values[0] * values[2])
+    elif values[1] == "/":
+        result = (values[0] / values[2])
+    else:
+        print("Unknown operator")
 
-print(f"Result: {a} {op} {b} = {result}")
+    print(f"Result: {values[0]} {values[1]} {values[2]} = {result}")

@@ -1,64 +1,53 @@
-# Common Python variable types
+APP_NAME = "www.google.com"
 
-# str
-APP_URL = "https://www.google.com"
-EMAIL = 'student@example.com'
-password = "this is - 'Playwright1'!"
+# str — text
+APP_URL = "www.google.com"
+username = "admin"
+url = APP_NAME
 
-# print(password)
-# type(password)
-# print(type(password))
+# int — whole number
+port = 443
+retry_count = 3
 
-# int
-TIMEOUT_MS = 5000000000
-RETRY_COUNT = -3
-PORT = 0
-# print(type(TIMEOUT_MS))
+# float — decimal number
+timeout_seconds = 2.5
+price = 9.99
 
-# float
-WAIT_SECONDS = -1.5
-PRICE = 19.99
-# print(type(PRICE))
-# bool
-HEADLESS = True
-DEBUG = False
+# bool — True or False
+is_logged_in = False
+debug = True
 
-# NoneType
-AUTH_TOKEN = None
-
-a = int("10A")
-b = 2
+a = int("10")
+b = 5
 print(type(a))
 print(type(b))
-# c = a / b
-# print(type(c))
-# print(c)
 
+# # None — empty / no value
+# error = None
 
-# # list
-# BROWSERS = ["chromium", "firefox", "webkit"]
-# TAGS = ["smoke", "login"]
+# # list — ordered collection
+# browsers = ["chromium", "firefox", "webkit"]
+# roles = ["user", "admin"]
 
-# # tuple (immutable)
-# VIEWPORT = (1280, 720)
-# RGB_PRIMARY = (61, 156, 240)
+# # tuple — ordered, cannot change
+# credentials = ("admin", "secret")
 
-# # dict
-# USER = {
-#     "email": EMAIL,
-#     "password": PASSWORD,
-#     "remember": True,
+# # dict — key/value pairs
+# user = {
+#     "name": username,
+#     "active": is_logged_in,
+#     "retries": retry_count,
 # }
 
-# SELECTORS = {
-#     "email": "#email",
-#     "password": "#password",
-#     "login_button": "#login-button",
-#     "message": "#message",
-# }
+# # set — unique values only
+# unique_roles = {"user", "admin", "user"}
 
-# # set (unique values)
-# ALLOWED_STATUSES = {"success", "error", "pending"}
-
-# # bytes
-# RAW_HEADER = b"Content-Type: text/html"
+# print(type(APP_NAME), APP_NAME)
+# print(type(port), port)
+# print(type(timeout_seconds), timeout_seconds)
+# print(type(is_logged_in), is_logged_in)
+# print(type(error), error)
+# print(type(browsers), browsers)
+# print(type(credentials), credentials)
+# print(type(user), user)
+# print(type(unique_roles), unique_roles)

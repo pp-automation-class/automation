@@ -6,9 +6,7 @@ while True:
     a = float(a_text)
     op = input("Enter + or - or * or /: ")
     b = float(input("Enter second number: "))
-
     values = [a, op, b]
-
     if values[1] == "+":
         result = values[0] + values[2]
     elif values[1] == "-":
@@ -20,5 +18,4 @@ while True:
     else:
         print("Unknown operator")
         continue
-
     print(f"Result: {values[0]} {values[1]} {values[2]} = {result}")

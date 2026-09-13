@@ -11,7 +11,9 @@ print(my_city)
 print(my_country)
 print(my_email)
 print(my_zip)
-print(my_name + " " + my_age + " " + my_city + " " + my_country + " " + my_email + " " + my_zip)
-print(int(my_age)+ 15)
-
-
+full_info = (
+    my_name + " " + my_age + " " + my_city + " "
+    + my_country + " " + my_email + " " + my_zip
+)
+print(full_info)
+print(int(my_age) + 15)

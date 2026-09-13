@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Contact — Automation</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a222c;
+      --border: #2c3845;
+      --text: #acb5bd;
+      --muted: #8b9aab;
+      --accent: #3d9cf0;
+      --accent-hover: #5aadf5;
+      --error: #ef3741;
+      --ok: #7fd99a;
+      --radius: 10px;
+      --font: "IBM Plex Sans", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      display: grid;
+      place-items: center;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #1c3a55 0%, transparent 55%),
+        radial-gradient(900px 500px at 100% 100%, #243018 0%, transparent 50%),
+        var(--bg);
+    }
+
+    .card {
+      width: min(100% - 2rem, 420px);
+      padding: 2rem;
+      background: color-mix(in srgb, var(--panel) 92%, transparent);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      backdrop-filter: blur(8px);
+    }
+
+    h1 {
+      margin: 0 0 0.25rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    .subtitle {
+      margin: 0 0 1.5rem;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 0.35rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .field { margin-bottom: 1rem; }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      width: 100%;
+      padding: 0.7rem 0.85rem;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      font: inherit;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 8rem;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      border-color: var(--accent);
+    }
+
+    .error {
+      margin: 0.35rem 0 0;
+      font-size: 0.8rem;
+      color: var(--error);
+      min-height: 1em;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      margin-top: 0.5rem;
+      padding: 0.75rem 1rem;
+      border: none;
+      border-radius: 8px;
+      background: var(--accent);
+      color: #0b1220;
+      font: inherit;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    button[type="submit"]:hover {
+      background: var(--accent-hover);
+    }
+
+    .status {
+      margin-top: 1rem;
+      font-size: 0.9rem;
+      color: var(--ok);
+    }
+
+    .status[hidden] { display: none; }
+  </style>
+</head>
+<body>
+  <main class="card">
+    <h1>Contact us</h1>
+    <p class="subtitle">Send a message and we will get back to you.</p>
+
+    <form id="contact-form" novalidate>
+      <div class="field">
+        <label for="name">Name</label>
+        <input id="name" name="name" type="text" autocomplete="name" required />
+        <p class="error" id="name-error" aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label for="email">Email</label>
+        <input id="email" name="email" type="email" autocomplete="email" required />
+        <p class="error" id="email-error" aria-live="polite"></p>
+      </div>
+
+      <div class="field">
+        <label for="message">Message</label>
+        <textarea id="message" name="message" required></textarea>
+        <p class="error" id="message-error" aria-live="polite"></p>
+      </div>
+
+      <button type="submit">Send</button>
+      <p class="status" id="status" hidden>Thanks — your message was sent.</p>
+    </form>
+  </main>
+
+  <script>
+    const form = document.getElementById("contact-form");
+    const status = document.getElementById("status");
+
+    function setError(id, message) {
+      document.getElementById(id + "-error").textContent = message;
+    }
+
+    form.addEventListener("submit", (event) => {
+      event.preventDefault();
+      status.hidden = true;
+
+      const name = form.name.value.trim();
+      const email = form.email.value.trim();
+      const message = form.message.value.trim();
+
+      setError("name", name ? "" : "Enter your name.");
+      setError("email", email && email.includes("@") ? "" : "Enter a valid email.");
+      setError("message", message ? "" : "Enter a message.");
+
+      if (!name || !email.includes("@") || !message) return;
+
+      form.reset();
+      status.hidden = false;
+    });
+  </script>
+</body>
+</html>

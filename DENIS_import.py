@@ -24,6 +24,5 @@ my_dog = Dog("Bruno")
 print(my_dog.name)
 my_dog.woof()
 
-
 from DENIS_class import Dog
 my_dog = Dog("Bruno")

@@ -1,7 +1,7 @@
-KISS = "Keep It Simple Stupid"
-DRY = "Don't Repeat Yourself"
-YAGNI = "You Aren't Gonna Need It"
-DOK = "Don't Overthink It"
+# KISS = "Keep It Simple Stupid"
+# DRY = "Don't Repeat Yourself"
+# YAGNI = "You Aren't Gonna Need It"
+# DOK = "Don't Overthink It"
 
 def my_print(item, value):
     print("******************")
@@ -31,3 +31,9 @@ my_print("Wind speed", input_wind_speed)
 
 input_wind_direction = float(input("Enter the wind direction: "))
 my_print("Wind direction", input_wind_direction)
+
+def calculate_wind_chill(temperature, wind_speed):
+    return 13.12 + 0.6215 * temperature - 11.37 * wind_speed ** 0.16 + 0.3965 * temperature * wind_speed ** 0.16
+
+wind_chill = calculate_wind_chill(input_temperature, input_wind_speed)
+my_print("Wind chill", wind_chill)  

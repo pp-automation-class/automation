@@ -43,14 +43,14 @@ friend_dog = Dog("Rex")
 print(friend_dog.name)
 print(friend_dog.age)
 
-# my_cat = Cat("Whiskers")
-# print(my_cat.name)
-# my_cat.make_sound() # method call
+my_cat = Cat("Whiskers")
+print(my_cat.name)
+my_cat.make_sound() # method call
 
-# my_bird = Bird("Tweetie")
-# print(my_bird.name)
-# my_bird.tweet() # method call
-# print(my_bird.age)
-# print(my_bird.breed)
-# print(my_bird.color)
-# print(my_bird.owner)
+my_bird = Bird("Tweetie")
+print(my_bird.name)
+my_bird.tweet() # method call
+print(my_bird.age)
+print(my_bird.breed)
+print(my_bird.color)
+print(my_bird.owner)

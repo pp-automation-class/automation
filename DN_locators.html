@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Locators — Automation</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a222c;
+      --border: #2c3845;
+      --text: #acb5bd;
+      --muted: #8b9aab;
+      --accent: #3d9cf0;
+      --accent-hover: #5aadf5;
+      --error: #ef3741;
+      --ok: #7fd99a;
+      --radius: 10px;
+      --font: "IBM Plex Sans", "Segoe UI", sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 2rem 1rem;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #1c3a55 0%, transparent 55%),
+        radial-gradient(900px 500px at 100% 100%, #243018 0%, transparent 50%),
+        var(--bg);
+    }
+
+    h1 {
+      max-width: 720px;
+      margin: 0 auto 1.5rem;
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+    }
+
+    section {
+      max-width: 720px;
+      margin: 0 auto 1rem;
+      padding: 1.25rem 1.5rem;
+      background: color-mix(in srgb, var(--panel) 92%, transparent);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    h2 {
+      margin: 0 0 0.25rem;
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--accent);
+    }
+
+    code.hint {
+      display: block;
+      margin-bottom: 1rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+
+    label { display: block; margin: 0.75rem 0 0.25rem; font-size: 0.85rem; }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 0.6rem 0.75rem;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.9rem;
+    }
+
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    button {
+      margin: 0.75rem 0.5rem 0 0;
+      padding: 0.6rem 1.25rem;
+      color: #fff;
+      background: var(--accent);
+      border: none;
+      border-radius: 6px;
+      font-family: inherit;
+      font-size: 0.9rem;
+      cursor: pointer;
+    }
+
+    button:hover { background: var(--accent-hover); }
+    button:disabled { background: var(--border); cursor: not-allowed; }
+
+    ul { padding-left: 1.25rem; }
+    li { margin: 0.35rem 0; }
+
+    .error { color: var(--error); }
+    .ok { color: var(--ok); }
+    .hidden { display: none; }
+
+    img {
+      width: 64px;
+      height: 64px;
+      border-radius: 6px;
+      border: 1px solid var(--border);
+    }
+
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { padding: 0.5rem; text-align: left; border-bottom: 1px solid var(--border); }
+  </style>
+</head>
+<body>
+  <h1>Playwright locator practice</h1>
+
+  <section>
+    <h2>1. get_by_role</h2>
+    <code class="hint">page.get_by_role("button", name="Sign in")</code>
+    <button type="button">Sign in</button>
+    <button type="button" disabled>Disabled action</button>
+    <a href="#checkout" role="link">Go to checkout</a>
+    <h3 role="heading">Account settings</h3>
+    <input type="checkbox" id="agree" />
+    <label for="agree">I agree to the terms</label>
+  </section>
+
+  <section>
+    <h2>2. get_by_label</h2>
+    <code class="hint">page.get_by_label("Username").fill("standard_user")</code>
+    <label for="username">Username</label>
+    <input id="username" type="text" />
+    <label for="password">Password</label>
+    <input id="password" type="password" />
+    <label for="country">Country</label>
+    <select id="country">
+      <option value="au">Australia</option>
+      <option value="us">United States</option>
+      <option value="jp">Japan</option>
+    </select>
+  </section>
+
+  <section>
+    <h2>3. get_by_placeholder</h2>
+    <code class="hint">page.get_by_placeholder("Search products")</code>
+    <input type="search" placeholder="Search products" />
+    <input type="email" placeholder="you@example.com" />
+  </section>
+
+  <section>
+    <h2>4. get_by_text</h2>
+    <code class="hint">page.get_by_text("Products")</code>
+    <p>Products</p>
+    <p class="error">Epic sadface: Username and password do not match</p>
+    <p class="ok">Order placed successfully</p>
+    <p>Total: <span>$29.99</span></p>
+  </section>
+
+  <section>
+    <h2>5. get_by_alt_text</h2>
+    <code class="hint">page.get_by_alt_text("Sauce Labs Backpack")</code>
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%233d9cf0'/%3E%3C/svg%3E" alt="Sauce Labs Backpack" />
+    <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' fill='%237fd99a'/%3E%3C/svg%3E" alt="Sauce Labs Bike Light" />
+  </section>
+
+  <section>
+    <h2>6. get_by_title</h2>
+    <code class="hint">page.get_by_title("Remove item")</code>
+    <button type="button" title="Remove item">&times;</button>
+    <span title="Items currently in your cart">Cart (2)</span>
+  </section>
+
+  <section>
+    <h2>7. get_by_test_id</h2>
+    <code class="hint">page.get_by_test_id("error")</code>
+    <p data-testid="error" class="error">Your card was declined</p>
+    <button type="button" data-testid="checkout-button">Checkout</button>
+    <span data-testid="shopping-cart-badge">2</span>
+  </section>
+
+  <section>
+    <h2>8. locator with CSS or XPath</h2>
+    <code class="hint">page.locator("#login-button") — last resort</code>
+    <button type="button" id="login-button">Login</button>
+    <div class="inventory_item">Backpack</div>
+    <div class="inventory_item">Bike Light</div>
+    <div class="inventory_item">Bolt T-Shirt</div>
+  </section>
+
+  <section>
+    <h2>Lists, filter, and nth</h2>
+    <code class="hint">page.get_by_role("listitem").filter(has_text="Backpack")</code>
+    <ul>
+      <li>Sauce Labs Backpack — $29.99</li>
+      <li>Sauce Labs Bike Light — $9.99</li>
+      <li>Sauce Labs Bolt T-Shirt — $15.99</li>
+      <li>Sauce Labs Fleece Jacket — $49.99</li>
+    </ul>
+    <table>
+      <thead>
+        <tr><th>Item</th><th>Qty</th><th>Price</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Backpack</td><td>1</td><td>$29.99</td></tr>
+        <tr><td>Bike Light</td><td>2</td><td>$19.98</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+  <section>
+    <h2>Hidden element</h2>
+    <code class="hint">expect(page.get_by_text("Secret panel")).to_be_hidden()</code>
+    <p class="hidden">Secret panel</p>
+  </section>
+</body>
+</html>

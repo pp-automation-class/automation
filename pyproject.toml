@@ -23,3 +23,7 @@ build-backend = "uv_build"
 [tool.pytest.ini_options]
 testpaths = ["."]
 python_files = ["test_*.py"]
+markers = [
+    "smoke: quick checks of the most important flows",
+    "regression: full set of checks",
+]

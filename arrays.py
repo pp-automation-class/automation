@@ -1,19 +1,22 @@
-# In Python, arrays are usually lists: []
 
-# browsers = ["chromium", "firefox", "webkit", "edge", "safari"]
+# browser_1 = "chromium"
+# browser_2 = "firefox"
+# browser_3 = "webkit"
 
-# print(browsers[4])
+# browsers = ["chromium", "firefox", "webkit", "edge", "brave", "opera", "vivaldi"]
+
+# print(browsers[5])
+
+Age = 28
+Hair = "brown"
+Height = 1.75
+Is_student = True
+Is_employee = False
+Is_developer = True
 
 
-# Age = 20
-# Hair = "brown"
-# Height = 1.80
-# Is_student = True
-# Is_employee = False
-
-
-# users = [20, "brown", 1.80, True, False]
-# managers = [45, "white", 1.80, False, False]
+users = [28, "brown", 1.75, True, False, True]
+managers = [35, "blonde", 1.80, False, True, False]
 
 # for index in range(len(users)): # for index in range(0, 5)
 #     print(users[index])
@@ -24,64 +27,24 @@
 # Set
 
 # users_dict = {
-#     "age": 20,
+#     "age": 28,
 #     "hair": "brown",
-#     "height": 1.80,
+#     "height": 1.75,
 #     "is_student": True,
-#     "is_employee": False
+#     "is_employee": False,
+#     "is_developer": True
 # }
 
-# print(users_dict["hair"])
+# print(users_dict["age"])
 
-# price = [1000, 200, 300, 400, 500]
-# print(min(price))
-
-
+# price = [500, 1000, 1500, 2000, 2500]
+# print(sum(price))
 
 
 
-
-# # create
-# browsers = ["chromium", "firefox", "webkit"]
-# numbers = [10, 20, 30, 40]
-# mixed = ["admin", 3, True]
-
-# print(browsers)
-# print(numbers)
-
-# # length
-# print(len(browsers))
-
-# # index — starts at 0
-# print(browsers[0])   # first
-# print(browsers[1])   # second
-# print(browsers[-1])  # last
-
-# # change item
-# browsers[1] = "edge"
-# print(browsers)
-
-# # add item
-# browsers.append("safari")
-# print(browsers)
-
-# # remove item
-# browsers.remove("edge")
-# print(browsers)
-
-# # check if item exists
-# if "chromium" in browsers:
-#     print("chromium is in the list")
-
-# # loop through array
-# for browser in browsers:
-#     print("Browser:", browser)
-
-# # loop with index
-# for i in range(len(numbers)):
-#     print(i, numbers[i])
 price = []
 for i in range(10):
     pr = int(input("Enter price: "))
     price.append(pr)
-print(price)
+    print(price)
+    

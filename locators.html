@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Playwright locators</title>
+  <style>
+    :root {
+      --bg: #0f1419;
+      --panel: #1a222c;
+      --border: #2c3845;
+      --text: #acb5bd;
+      --muted: #8b9aab;
+      --accent: #3d9cf0;
+      --ok: #7fd99a;
+      --radius: 10px;
+      --font: "IBM Plex Sans", "Segoe UI", sans-serif;
+      --mono: "IBM Plex Mono", ui-monospace, Menlo, monospace;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      padding: 2rem 1rem 4rem;
+      font-family: var(--font);
+      color: var(--text);
+      background:
+        radial-gradient(1200px 600px at 10% -10%, #1c3a55 0%, transparent 55%),
+        radial-gradient(900px 500px at 100% 100%, #243018 0%, transparent 50%),
+        var(--bg);
+    }
+
+    .wrap { width: min(100%, 880px); margin: 0 auto; }
+
+    h1 { margin: 0 0 0.25rem; font-size: 1.6rem; letter-spacing: -0.02em; }
+    .subtitle { margin: 0 0 1.5rem; color: var(--muted); }
+
+    .hit {
+      min-height: 2.4rem;
+      margin-bottom: 1.25rem;
+      padding: 0.7rem 0.9rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--panel);
+      color: var(--ok);
+      font-family: var(--mono);
+      font-size: 0.85rem;
+    }
+
+    article {
+      margin-bottom: 1rem;
+      padding: 1.1rem 1.2rem;
+      background: color-mix(in srgb, var(--panel) 92%, transparent);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+    }
+
+    .rank {
+      display: inline-block;
+      margin-right: 0.4rem;
+      padding: 0.1rem 0.45rem;
+      border-radius: 6px;
+      background: #243447;
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+    }
+
+    h2 { margin: 0 0 0.35rem; font-size: 1.05rem; }
+    p { margin: 0 0 0.85rem; color: var(--muted); font-size: 0.9rem; }
+
+    .demo { margin-bottom: 0.75rem; }
+
+    label { display: block; margin-bottom: 0.3rem; font-size: 0.85rem; color: var(--muted); }
+
+    input, button {
+      font: inherit;
+      border-radius: 8px;
+    }
+
+    input {
+      width: min(100%, 320px);
+      padding: 0.55rem 0.75rem;
+      color: var(--text);
+      background: var(--bg);
+      border: 1px solid var(--border);
+      outline: none;
+    }
+
+    button {
+      padding: 0.5rem 0.9rem;
+      color: #0f1419;
+      background: var(--accent);
+      border: 0;
+      cursor: pointer;
+      font-weight: 600;
+    }
+
+    img {
+      display: block;
+      width: 120px;
+      height: 48px;
+      border-radius: 8px;
+      background: #243447;
+    }
+
+    a[title] { color: var(--accent); }
+
+    pre {
+      margin: 0;
+      padding: 0.75rem 0.85rem;
+      overflow-x: auto;
+      border-radius: 8px;
+      background: #0c1014;
+      border: 1px solid var(--border);
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      line-height: 1.45;
+      white-space: pre-wrap;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <h1>Playwright locators</h1>
+    <p class="subtitle">Most resilient first. Click a control — the hit log shows which locator fired.</p>
+    <div class="hit" id="hit">waiting for interaction…</div>
+
+    <article>
+      <h2><span class="rank">1</span> Role</h2>
+      <p>get_by_role — accessibility name. Prefer this.</p>
+      <div class="demo">
+        <input type="text" aria-label="Username" />
+        <button type="button" data-hit="get_by_role('button', name='Login')">Login</button>
+      </div>
+      <pre>page.get_by_role("textbox", name="Username").fill("standard_user")
+page.get_by_role("button", name="Login").click()</pre>
+    </article>
+
+    <article>
+      <h2><span class="rank">2</span> Label</h2>
+      <p>get_by_label — associated &lt;label for&gt;.</p>
+      <div class="demo">
+        <label for="email">Email</label>
+        <input id="email" type="email" />
+      </div>
+      <pre>page.get_by_label("Email").fill("student@example.com")</pre>
+    </article>
+
+    <article>
+      <h2><span class="rank">3</span> Placeholder</h2>
+      <p>get_by_placeholder — only if there's no proper label.</p>
+      <div class="demo">
+        <input type="password" placeholder="Password" />
+      </div>
+      <pre>page.get_by_placeholder("Password").fill("secret_sauce")</pre>
+    </article>
+
+    <article>
+      <h2><span class="rank">4</span> Text</h2>
+      <p>get_by_text — visible copy. Substring match by default.</p>
+      <div class="demo">
+        <p>Products</p>
+        <button type="button" data-hit="get_by_text('Add to cart')">Add to cart</button>
+      </div>
+      <pre>expect(page.get_by_text("Products")).to_be_visible()
+page.get_by_text("Add to cart").click()</pre>
+    </article>
+
+    <article>
+      <h2><span class="rank">5</span> Alt text</h2>
+      <p>get_by_alt_text — images.</p>
+      <div class="demo">
+        <img
+          alt="Swag Labs"
+          data-hit="get_by_alt_text('Swag Labs')"
+          src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='48'%3E%3Crect fill='%23243447' width='120' height='48' rx='8'/%3E%3Ctext x='60' y='30' text-anchor='middle' fill='%233d9cf0' font-family='sans-serif' font-size='14'%3ESwag Labs%3C/text%3E%3C/svg%3E"
+        />
+      </div>
+      <pre>page.get_by_alt_text("Swag Labs").click()</pre>
+    </article>
+
+    <article>
+      <h2><span class="rank">6</span> Title</h2>
+      <p>get_by_title — tooltip / title attribute.</p>
+      <div class="demo">
+        <a href="#title" title="Open inventory">Inventory</a>
+      </div>
+      <pre>page.get_by_title("Open inventory").click()</pre>
+    </article>
+
+    <article>
+      <h2><span class="rank">7</span> Test id</h2>
+      <p>get_by_test_id — data-testid. Use when user-facing attrs don't exist.</p>
+      <div class="demo">
+        <button type="button" data-testid="checkout" data-hit="get_by_test_id('checkout')">Checkout</button>
+      </div>
+      <pre>page.get_by_test_id("checkout").click()</pre>
+    </article>
+
+    <article>
+      <h2><span class="rank">8</span> CSS / XPath</h2>
+      <p>page.locator — last resort. IDs and classes break on restyle.</p>
+      <div class="demo">
+        <input id="user-name" class="login-field" type="text" />
+        <button type="button" id="login-button" data-hit="locator('#login-button')">Submit</button>
+      </div>
+      <pre>page.locator("#user-name").fill("standard_user")
+page.locator("#login-button").click()
+page.locator("xpath=//button[@id='login-button']").click()</pre>
+    </article>
+  </div>
+
+  <script>
+    const hit = document.getElementById("hit");
+
+    const mark = (text) => {
+      hit.textContent = text;
+    };
+
+    document.querySelector('[aria-label="Username"]').addEventListener("input", (e) => {
+      mark(`get_by_role("textbox", name="Username") → ${e.target.value}`);
+    });
+
+    document.getElementById("email").addEventListener("input", (e) => {
+      mark(`get_by_label("Email") → ${e.target.value}`);
+    });
+
+    document.querySelector('[placeholder="Password"]').addEventListener("input", (e) => {
+      mark(`get_by_placeholder("Password") → ${e.target.value}`);
+    });
+
+    document.getElementById("user-name").addEventListener("input", (e) => {
+      mark(`locator("#user-name") → ${e.target.value}`);
+    });
+
+    document.querySelector('[title="Open inventory"]').addEventListener("click", (e) => {
+      e.preventDefault();
+      mark('get_by_title("Open inventory")');
+    });
+
+    document.addEventListener("click", (e) => {
+      const el = e.target.closest("[data-hit]");
+      if (el) mark(el.dataset.hit);
+    });
+  </script>
+</body>
+</html>

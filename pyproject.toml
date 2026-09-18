@@ -23,3 +23,8 @@ build-backend = "uv_build"
 [tool.pytest.ini_options]
 testpaths = ["."]
 python_files = ["test_*.py"]
+markers = [
+    "smoke: critical happy-path checks",
+    "regression: full suite including negative cases",
+    "negative: invalid input / error handling checks",
+]

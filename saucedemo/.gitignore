@@ -1,0 +1,27 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+dist/
+build/
+
+# uv / pytest / Playwright
+.pytest_cache/
+test-results/
+playwright-report/
+blob-report/
+allure-results/
+allure-report/
+reports/
+logs/
+
+# Secrets. .env.example is the template and stays in git.
+.env
+# A zip can hold a copy of .env.
+*.zip
+
+# OS and editors
+.DS_Store
+.idea/
+.vscode/

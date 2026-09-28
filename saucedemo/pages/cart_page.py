@@ -25,4 +25,5 @@ class CartPage(BasePage):
 
     def checkout(self) -> None:
         log.info("Checkout")
+        self._debug("checkout", self.checkout_button)
         self.checkout_button.click()

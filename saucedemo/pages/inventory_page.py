@@ -33,5 +33,8 @@ class InventoryPage(BasePage):
         A short name can match more than one card.
         """
         log.info("Add to cart: %s", name)
-        item = self.items.filter(has_text=name)
-        item.get_by_role("button", name="Add to cart").click()
+        button = self.items.filter(has_text=name).get_by_role(
+            "button", name="Add to cart"
+        )
+        self._debug("add to cart", button)
+        button.click()

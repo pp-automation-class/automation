@@ -8,7 +8,7 @@ LoginPage inherits it too, but the menu is not on screen until you log in.
 
 import logging
 
-from playwright.sync_api import Page
+from playwright.sync_api import Locator, Page
 
 from config import BASE_URL
 
@@ -29,6 +29,16 @@ class BasePage:
         self.menu_button = page.get_by_role("button", name="Open Menu")
         self.logout_link = page.locator("[data-test='logout-sidebar-link']")
 
+    def _debug(self, action: str, locator: Locator) -> None:
+        """
+        Write the locator to the log at DEBUG.
+
+        INFO stays the short step ("Open the cart"). DEBUG adds the
+        element, for example locator("[data-test='shopping-cart-link']").
+        See it with: uv run pytest --log-file-level=DEBUG
+        """
+        log.debug("%s -> %s", action, locator)
+
     def open(self, path: str = "/") -> None:
         """Open a path on saucedemo.com, for example '/inventory.html'."""
         log.info("Open %s", path)
@@ -37,10 +47,13 @@ class BasePage:
 
     def open_cart(self) -> None:
         log.info("Open the cart")
+        self._debug("cart", self.cart_link)
         self.cart_link.click()
 
     def logout(self) -> None:
         """Open the side menu, then click Logout."""
         log.info("Log out")
+        self._debug("menu", self.menu_button)
         self.menu_button.click()
+        self._debug("logout", self.logout_link)
         self.logout_link.click()

@@ -34,10 +34,14 @@ class CheckoutInfoPage(BasePage):
         first_name, last_name = _letters(), _letters()
         log.info("Fill your information")
         log.debug("Name %s %s, postal code %s", first_name, last_name, postal_code)
+        self._debug("first name", self.first_name)
         self.first_name.press_sequentially(first_name)
+        self._debug("last name", self.last_name)
         self.last_name.press_sequentially(last_name)
+        self._debug("postal code", self.postal_code)
         self.postal_code.fill(postal_code)
 
     def continue_checkout(self) -> None:
         log.info("Continue")
+        self._debug("continue", self.continue_button)
         self.continue_button.click()

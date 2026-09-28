@@ -25,7 +25,8 @@ addopts = ["--alluredir=allure-results", "--clean-alluredir"]
 markers = [
     "smoke: a few fast checks that login and the shop still work",
 ]
-# Log file for each run. INFO by default; add --log-file-level=DEBUG for more.
+# Log file for each run. INFO is the step.
+# DEBUG also writes the locator. See it with --log-file-level=DEBUG.
 log_file = "logs/tests.log"
 log_file_level = "INFO"
 log_file_format = "%(asctime)s %(levelname)-5s %(name)s: %(message)s"

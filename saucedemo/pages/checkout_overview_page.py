@@ -25,4 +25,5 @@ class CheckoutOverviewPage(BasePage):
 
     def finish(self) -> None:
         log.info("Finish the order")
+        self._debug("finish", self.finish_button)
         self.finish_button.click()

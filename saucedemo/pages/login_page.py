@@ -28,8 +28,11 @@ class LoginPage(BasePage):
         Pass the pair from .env: get_user("standard"), get_password("standard").
         press_sequentially types one character at a time, so --slowmo shows each key.
         """
-        # Never write the password to the log.
+        # Never write the password to the log. The locator is safe to write.
         log.info("Log in as %r", username)
+        self._debug("username", self.username_input)
         self.username_input.press_sequentially(username)
+        self._debug("password", self.password_input)
         self.password_input.press_sequentially(password)
+        self._debug("login", self.login_button)
         self.login_button.click()

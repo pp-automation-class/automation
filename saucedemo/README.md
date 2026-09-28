@@ -79,7 +79,9 @@ Name fields are typed one letter at a time. The letters come from Faker.
 ## Logs
 
 Every run writes `logs/tests.log`. pytest makes the folder and replaces the file each run.
-The page classes write what they do, for example `Open /cart.html`.
+Each test starts with `START <test name>` and ends with its result, for example
+`PASSED tests/test_cart.py::test_adding_a_product_updates_the_cart[chromium] (call)`.
+In between, the page classes write what they do, for example `Open the cart`.
 
 ```bash
 uv run pytest                              # INFO: the steps (default)

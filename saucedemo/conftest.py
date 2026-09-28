@@ -13,7 +13,7 @@ What this file gives the tests:
 - `inventory`: the product list, already signed in as the standard user
 - a screenshot in test-results/ and in the Allure report when a test fails
 - an HTML report at reports/index.html after the run
-- a log of the steps at logs/tests.log (see pyproject.toml)
+- a log of the steps at logs/tests.log, with each test's name and result
 """
 
 import logging
@@ -31,6 +31,8 @@ from pages.login_page import LoginPage
 
 # The project folder. Output folders go here, wherever pytest is started.
 ROOT = Path(__file__).resolve().parent
+
+log = logging.getLogger("tests")
 
 
 @pytest.hookimpl(tryfirst=True)
@@ -87,6 +89,22 @@ def inventory(login: LoginPage) -> InventoryPage:
     # Stop here with a clear message if the login did not work.
     expect(products.title).to_have_text("Products")
     return products
+
+
+def pytest_runtest_logstart(nodeid: str) -> None:
+    """Write the test name to the log before the test's steps."""
+    log.info("START %s", nodeid)
+
+
+def pytest_runtest_logreport(report: pytest.TestReport) -> None:
+    """
+    Write the result after the test.
+
+    pytest reports setup, call and teardown separately. Log the call,
+    and setup or teardown only when they did not pass.
+    """
+    if report.when == "call" or report.outcome != "passed":
+        log.info("%s %s (%s)", report.outcome.upper(), report.nodeid, report.when)
 
 
 @pytest.hookimpl(hookwrapper=True)
